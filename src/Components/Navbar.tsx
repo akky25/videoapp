@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { DotsVertical, Logo, Search } from "./Icons/Icons";
+import { DotsVertical, HelpCircle, Logo, Search, User } from "./Icons/Icons";
 import {
   type ChangeEvent,
   useState,
@@ -8,7 +8,7 @@ import {
 } from "react";
 import router from "next/router";
 import { Menu, Transition } from "@headlessui/react";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, useSession, signOut } from "next-auth/react";
 import { UserImage } from "./Components";
 import { Button } from "./Button/Buttons";
 
@@ -25,7 +25,28 @@ interface NavigationItem {
 
 export default function Navbar({ children }: NavbarProps) {
   const { data: sessionData } = useSession();
+  const userId = sessionData?.user.id;
+
+  const signedInNavigation: NavigationItem[] = [
+    {
+      icon: (className) => <User className={className} />,
+      name: "View Profile",
+      path: `/${String(userId)}/ProfileVideos`,
+      lineAbove: true,
+    },
+  ];
+  const signedOutNavigation: NavigationItem[] = [
+    {
+      icon: (className) => <HelpCircle className={className} />,
+      name: "Help",
+      path: `/Blog/Help`,
+      lineAbove: true,
+    },
+  ];
+  const Navigation = sessionData ? signedInNavigation : signedOutNavigation;
+
   const [searchInput, setSearchInput] = useState("");
+
   const handleSearch = async () => {
     try {
       await router.push({
@@ -65,7 +86,7 @@ export default function Navbar({ children }: NavbarProps) {
                   <input
                     id="search"
                     name="search"
-                    className="block w-full rounded-md border-0 py-1.5 pl-10 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6 "
+                    className="focus:ring-primary-500 block w-full rounded-md border-0 py-1.5 pl-10 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 "
                     placeholder="Search"
                     type="search"
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -83,7 +104,7 @@ export default function Navbar({ children }: NavbarProps) {
             {/* 3 dots  and Profile dropdown */}
             <Menu as="div" className="relative ml-5 flex-shrink-0">
               <div>
-                <Menu.Button className="flex rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                <Menu.Button className="focus:ring-primary-500 flex rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2">
                   {sessionData ? (
                     <UserImage image={sessionData?.user.image ?? ""} />
                   ) : (
@@ -120,6 +141,29 @@ export default function Navbar({ children }: NavbarProps) {
                       Menu
                     </p>
                   )}
+
+                  {Navigation.map((item) => (
+                    <Menu.Item key={item.name}>
+                      {({ active }) => (
+                        <Link
+                          onClick={(e) => {
+                            e.preventDefault();
+                            if (item.path === "sign-out") {
+                              void signOut();
+                            } else {
+                              void router.push(item.path || "/");
+                            }
+                          }}
+                          href={item.path || "/"}
+                        >
+                          <div className="flex items-center">
+                            {item.icon("h-4 w-4 stroke-gray-700")}
+                            <div className="pl-2">{item.name}</div>
+                          </div>
+                        </Link>
+                      )}
+                    </Menu.Item>
+                  ))}
                 </Menu.Items>
               </Transition>
             </Menu>
