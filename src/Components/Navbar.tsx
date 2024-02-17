@@ -1,5 +1,17 @@
 import Link from "next/link";
-import { DotsVertical, HelpCircle, Logo, Search, User } from "./Icons/Icons";
+import {
+  Brush,
+  DotsVertical,
+  HelpCircle,
+  Logo,
+  MessagePlusSquare,
+  Search,
+  Settings,
+  User,
+  File,
+  Lock,
+  LogOut,
+} from "./Icons/Icons";
 import {
   type ChangeEvent,
   useState,
@@ -34,6 +46,48 @@ export default function Navbar({ children }: NavbarProps) {
       path: `/${String(userId)}/ProfileVideos`,
       lineAbove: true,
     },
+    {
+      icon: (className) => <Brush className={className} />,
+      name: "Creator Studio",
+      path: `/Dashboard`,
+      lineAbove: false,
+    },
+    {
+      icon: (className) => <HelpCircle className={className} />,
+      name: "Help",
+      path: "/Blog/Help",
+      lineAbove: true,
+    },
+    {
+      icon: (className) => <Settings className={className} />,
+      name: "Settings",
+      path: "/Settings",
+      lineAbove: false,
+    },
+    {
+      icon: (className) => <MessagePlusSquare className={className} />,
+      name: "Feedback",
+      path: "#",
+      lineAbove: false,
+    },
+    {
+      icon: (className) => <File className={className} />,
+      name: "Terms of Service",
+      path: "/Blog/TOS",
+      lineAbove: true,
+    },
+    {
+      icon: (className) => <Lock className={className} />,
+      name: "Privacy",
+      path: "/Blog/Privacy",
+      lineAbove: false,
+    },
+    {
+      icon: (className) => <LogOut className={className} />,
+      name: "Log Out",
+      path: "sign-out",
+      lineAbove: true,
+    },
   ];
   const signedOutNavigation: NavigationItem[] = [
     {
@@ -41,6 +95,24 @@ export default function Navbar({ children }: NavbarProps) {
       name: "Help",
       path: `/Blog/Help`,
       lineAbove: true,
+    },
+    {
+      icon: (className) => <MessagePlusSquare className={className} />,
+      name: "Feedback",
+      path: `mailto:vidchill@vidchill.com`,
+      lineAbove: false,
+    },
+    {
+      icon: (className) => <File className={className} />,
+      name: "Terms of Service",
+      path: "/Blog/TOS",
+      lineAbove: true,
+    },
+    {
+      icon: (className) => <Lock className={className} />,
+      name: "Privacy",
+      path: "/Blog/Privacy",
+      lineAbove: false,
     },
   ];
   const Navigation = sessionData ? signedInNavigation : signedOutNavigation;
