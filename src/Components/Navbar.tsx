@@ -64,6 +64,10 @@ export default function Navbar({ children }: NavbarProps) {
     }
   };
 
+  function classNames(...classes: string[]) {
+    return classes.filter(Boolean).join(" ");
+  }
+
   return (
     <>
       <div className="fixed z-50 w-full border border-gray-200 bg-white shadow-sm lg:overflow-y-visible">
@@ -155,6 +159,11 @@ export default function Navbar({ children }: NavbarProps) {
                             }
                           }}
                           href={item.path || "/"}
+                          className={classNames(
+                            active ? "bg-gray-100" : "",
+                            "block px-4 py-2 text-sm text-gray-700",
+                            item.lineAbove ? "border-t border-gray-200" : "",
+                          )}
                         >
                           <div className="flex items-center">
                             {item.icon("h-4 w-4 stroke-gray-700")}
