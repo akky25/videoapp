@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Menu } from "./Icons/Icons";
 import Navbar from "./Navbar";
-import { Sidebar } from "./Components";
+import { Footer, Sidebar } from "./Components";
 
 interface LayoutProps {
   children: JSX.Element;
@@ -31,6 +31,9 @@ export default function Layout({ children, closeSidebar }: LayoutProps) {
         closeSidebar={closeSidebar}
         setSidebarOpen={setSidebarOpen}
       />
+      <div className="lg:hidden">
+        <Footer />
+      </div>
       <div className={classNames(closeSidebar ? "lg:pl-20" : "lg:pl-56")}>
         <main className="py-24">
           <div className="mx-auto px-4 sm:px-6 lg:px-8">
