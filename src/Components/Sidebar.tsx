@@ -46,8 +46,8 @@ export default function Sidebar({
   const { data: sessionData } = useSession();
   const userId = sessionData?.user.id;
 
-  function classNames(...clasess: string[]) {
-    return clasess.filter(Boolean).join(" ");
+  function classNames(...classes: string[]) {
+    return classes.filter(Boolean).join(" ");
   }
 
   const DesktopNavigation: NavigationItem[] = [
@@ -147,6 +147,7 @@ export default function Sidebar({
     mobileNavigation.forEach((nav) => {
       nav.current = nav.path === router.pathname;
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.pathname]);
 
   return (
