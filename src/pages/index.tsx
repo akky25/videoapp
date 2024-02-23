@@ -1,7 +1,28 @@
+import { type NextPage } from "next";
 import Head from "next/head";
+import { ErrorMessage, LoadingMessage } from "~/Components/ErrorMessage";
 import Layout from "~/Components/Layout";
+import { api } from "~/utils/api";
 
-export default function Home() {
+const Home: NextPage = () => {
+  const { data, isLoading, error } = api.video.getRandomVideos.useQuery(40);
+
+  const Error = () => {
+    if (isLoading) {
+      return <LoadingMessage />;
+    } else if (error ?? !data) {
+      return (
+        <ErrorMessage
+          icon="GreenPlay"
+          message="No Videos"
+          description="Sorry there is no videos at this time."
+        />
+      );
+    } else {
+      return <></>;
+    }
+  };
+
   return (
     <>
       <Head>
@@ -10,8 +31,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout closeSidebar={true}>
-        <p>This is from the home page</p>
+        {!data || error ? (
+          <Error />
+        ) : (
+          <>
+            <p>hellow</p>
+          </>
+        )}
       </Layout>
     </>
   );
-}
+};
+
+export default Home;
