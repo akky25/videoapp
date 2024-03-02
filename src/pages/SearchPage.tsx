@@ -1,12 +1,17 @@
 import { type NextPage } from "next";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { ErrorMessage, LoadingMessage } from "~/Components/ErrorMessage";
 import Layout from "~/Components/Layout";
-import { MuliColumnVideo } from "~/Components/Components";
+import { SingleColumnVideo } from "~/Components/Components";
 import { api } from "~/utils/api";
 
-const Home: NextPage = () => {
-  const { data, isLoading, error } = api.video.getRandomVideos.useQuery(30);
+const SearchPage: NextPage = () => {
+  const router = useRouter();
+  const searchQuery = router.query.q;
+  const { data, isLoading, error } = api.video.getVideosBySearch.useQuery(
+    searchQuery as string,
+  );
 
   const Error = () => {
     if (isLoading) {
@@ -16,7 +21,7 @@ const Home: NextPage = () => {
         <ErrorMessage
           icon="GreenPlay"
           message="No Videos"
-          description="Sorry there is no videos at this time."
+          description="Sorry try another search result ."
         />
       );
     } else {
@@ -31,13 +36,12 @@ const Home: NextPage = () => {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <Layout closeSidebar={true}> */}
       <Layout>
         {!data || error ? (
           <Error />
         ) : (
           <>
-            <MuliColumnVideo
+            <SingleColumnVideo
               videos={data.videos.map((video) => ({
                 id: video?.id ?? "",
                 title: video?.title ?? "",
@@ -57,4 +61,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default SearchPage;
