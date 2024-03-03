@@ -1,13 +1,17 @@
 import { type NextPage } from "next";
 import { useSession } from "next-auth/react";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import ReactPlayer from "react-player";
+import { FollowButton } from "~/Components/Button/Buttons";
 import { ErrorMessage, LoadingMessage } from "~/Components/ErrorMessage";
 import Layout from "~/Components/Layout";
 import {
   SmallSingleColumnVideo,
+  UserImage,
+  UserName,
   VideoInfo,
   VideoTitle,
 } from "~/Components/VideoComponent";
@@ -66,7 +70,8 @@ const VideoPage: NextPage = () => {
 
   const video = videoData?.video;
   const user = videoData?.user;
-  const errorTypes = !videoData || !user || !video;
+  const viewer = videoData?.viewer;
+  const errorTypes = !videoData || !user || !video || !viewer;
 
   const DataError = () => {
     if (videoLoading) {
@@ -117,6 +122,29 @@ const VideoPage: NextPage = () => {
                           createdAt={video.createdAt}
                         />
                       </div>
+                    </div>
+                    <div className="flex flex-row  place-content-between gap-x-4 ">
+                      <Link
+                        href={`/${video.userId}/ProfileVideos`}
+                        key={video.userId}
+                      >
+                        <div className="flex flex-row gap-2">
+                          <UserImage image={user.image ?? ""} />
+                          <button className="flex flex-col">
+                            <UserName name={user.name ?? ""} />
+                            <p className=" text-sm text-gray-600">
+                              {user.followers}
+                              <span> Followers</span>
+                            </p>
+                          </button>
+                        </div>
+                      </Link>
+                      <FollowButton
+                        followingId={user.id}
+                        viewer={{
+                          hasFollowed: viewer.hasFollowed,
+                        }}
+                      />
                     </div>
                   </div>
                 </div>

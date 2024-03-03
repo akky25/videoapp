@@ -33,7 +33,9 @@ export const videoRouter = createTRPCRouter({
 
       const followers = await ctx.db.followEngagement.count({
         where: {
-          followerId: video.userId,
+          // followingIdの間違い？
+          // followerId: video.userId,
+          followingId: video.userId,
         },
       });
       const likes = await ctx.db.videoEngagement.count({
@@ -62,10 +64,50 @@ export const videoRouter = createTRPCRouter({
         comment,
       }));
 
+      let viewerHasLiked = false;
+      let viewerHasDisliked = false;
+      let viewerHasFollowed = false;
+
+      if (input.viewerId && input.viewerId !== "") {
+        viewerHasLiked = !!(await ctx.db.videoEngagement.findFirst({
+          where: {
+            videoId: input.id,
+            userId: input.viewerId,
+            engagementType: EngagementType.LIKE,
+          },
+        }));
+
+        viewerHasDisliked = !!(await ctx.db.videoEngagement.findFirst({
+          where: {
+            videoId: input.id,
+            userId: input.viewerId,
+            engagementType: EngagementType.DISLIKE,
+          },
+        }));
+
+        viewerHasFollowed = !!(await ctx.db.followEngagement.findFirst({
+          where: {
+            followingId: rawVideo.userId,
+            followerId: input.viewerId,
+          },
+        }));
+      } else {
+        viewerHasLiked = false;
+        viewerHasDisliked = false;
+        viewerHasFollowed = false;
+      }
+
+      const viewer = {
+        hasLiked: viewerHasLiked,
+        hasDisliked: viewerHasDisliked,
+        hasFollowed: viewerHasFollowed,
+      };
+
       return {
         video: videoWithLikesDislikesViews,
         user: userWithFollowers,
         comments: commentsWithUsers,
+        viewer,
       };
     }),
 
