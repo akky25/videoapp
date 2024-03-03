@@ -6,6 +6,7 @@ export { UserImage } from "./VideoComponent";
 export {
   MuliColumnVideo,
   SingleColumnVideo,
+  SmallSingleColumnVideo,
   VideoTitle,
   VideoInfo,
   UserName,

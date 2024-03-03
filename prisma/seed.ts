@@ -13,6 +13,19 @@ import {
 import fs from "fs";
 import path from "path";
 
+function updateProgressBar(current: number, total: number, name: string): void {
+  const percentage: number = (current / total) * 100;
+  const progressBarLength = 20;
+  const progress: number = Math.round((progressBarLength * current) / total);
+  const bar: string =
+    "=".repeat(progress) + " ".repeat(progressBarLength - progress);
+
+  // カーソルを行の先頭に戻して進捗バーを更新
+  process.stdout.write(
+    `\r=> create ${name.padEnd(25, " ")} [${bar}] ${percentage.toFixed(2)}% ${current}/${total} `,
+  );
+}
+
 // To generate the data files, run the following commands:
 const prisma = new PrismaClient();
 const usersFile = path.join(__dirname, "data/user.json");
@@ -65,6 +78,7 @@ const playlistHasVideos: PlaylistHasVideo[] = JSON.parse(
 ) as PlaylistHasVideo[];
 
 async function processInChunks<T, U>(
+  name: string,
   items: T[],
   chunkSize: number,
   processItem: (item: T) => Promise<U>,
@@ -74,7 +88,10 @@ async function processInChunks<T, U>(
     const chunk = items.slice(i, i + chunkSize);
     const chunkPromises = chunk.map(processItem);
     results.push(...(await Promise.all(chunkPromises)));
+    updateProgressBar(i + 1, items.length, name);
   }
+  console.log();
+
   return results;
 }
 
@@ -93,6 +110,7 @@ const getNextUserId = generateNextId(164, 178);
 const cloudinaryName = process.env.NEXT_PUBLIC_CLOUDINARY_NAME ?? "";
 
 async function main() {
+  console.log("=== start db delete ===");
   // Delete all records from tables
   await prisma.user.deleteMany();
   await prisma.video.deleteMany();
@@ -103,10 +121,11 @@ async function main() {
   await prisma.comment.deleteMany();
   await prisma.playlist.deleteMany();
   await prisma.playlistHasVideo.deleteMany();
+  console.log("=== end db delete ===");
 
   // Populate tables with new data
-
-  await processInChunks(users, 1, (user) =>
+  console.log("=== start create data ===");
+  await processInChunks("user", users, 1, (user) =>
     prisma.user.upsert({
       where: { id: user.id },
       update: {
@@ -136,7 +155,7 @@ async function main() {
     }),
   );
 
-  await processInChunks(videos, 1, (video) =>
+  await processInChunks("video", videos, 1, (video) =>
     prisma.video.upsert({
       where: { id: video.id },
       update: {
@@ -154,29 +173,42 @@ async function main() {
     }),
   );
 
-  await processInChunks(videoEngagements, 1, (videoEngagement) =>
-    prisma.videoEngagement.create({ data: videoEngagement }),
+  await processInChunks(
+    "videoEngagements",
+    videoEngagements,
+    1,
+    (videoEngagement) =>
+      prisma.videoEngagement.create({ data: videoEngagement }),
   );
 
-  await processInChunks(followEngagements, 1, async (followEngagement) => {
-    const existingFollowEngagements = await prisma.followEngagement.findMany({
-      where: {
-        followerId: followEngagement.followerId,
-        followingId: followEngagement.followingId,
-      },
-    });
-    if (existingFollowEngagements.length === 0 || !existingFollowEngagements) {
-      return prisma.followEngagement.create({ data: followEngagement });
-    } else {
-      return;
-    }
-  });
+  await processInChunks(
+    "followEngagements",
+    followEngagements,
+    1,
+    async (followEngagement) => {
+      const existingFollowEngagements = await prisma.followEngagement.findMany({
+        where: {
+          followerId: followEngagement.followerId,
+          followingId: followEngagement.followingId,
+        },
+      });
+      if (
+        existingFollowEngagements.length === 0 ||
+        !existingFollowEngagements
+      ) {
+        return prisma.followEngagement.create({ data: followEngagement });
+      } else {
+        return;
+      }
+    },
+  );
 
-  await processInChunks(announcements, 1, (announcement) =>
+  await processInChunks("announcements", announcements, 1, (announcement) =>
     prisma.announcement.create({ data: announcement }),
   );
 
   await processInChunks(
+    "announcementEngagements",
     announcementEngagements,
     1,
     async (announcementEngagement) => {
@@ -200,7 +232,8 @@ async function main() {
       }
     },
   );
-  await processInChunks(comments, 1, (comment) =>
+
+  await processInChunks("comments", comments, 1, (comment) =>
     prisma.comment.upsert({
       where: { id: comment.id },
       update: {
@@ -218,7 +251,7 @@ async function main() {
     }),
   );
 
-  await processInChunks(playlists, 1, async (playlist) =>
+  await processInChunks("playlists", playlists, 1, async (playlist) =>
     prisma.playlist.upsert({
       where: { id: playlist.id },
       update: {
@@ -238,10 +271,13 @@ async function main() {
     }),
   );
 
-  await processInChunks(playlistHasVideos, 1, (playlistHasVideo) =>
+  await processInChunks("playlists", playlistHasVideos, 1, (playlistHasVideo) =>
     prisma.playlistHasVideo.create({ data: playlistHasVideo }),
   );
+
+  console.log("=== end create data ===");
 }
+
 main()
   .catch((e) => console.error(e))
   .finally(() => {

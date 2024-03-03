@@ -177,8 +177,8 @@ export default function Sidebar({
                         }}
                         className={classNames(
                           item.current
-                            ? "text-primary-600 bg-gray-50"
-                            : "hover:bg-gray50 hover:text-primary-600 text-gray-700",
+                            ? "bg-gray-50 text-primary-600"
+                            : "hover:bg-gray50 text-gray-700 hover:text-primary-600",
                           "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6",
                         )}
                       >
@@ -206,20 +206,20 @@ export default function Sidebar({
                         : void signIn();
                     }
                   }}
-                  className="hover:text-primary-600 group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
+                  className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-primary-600"
                 >
-                  <Settings className="group-hover:stroke-primary-600 h-5 w-5 shrink-0 stroke-gray-500" />
+                  <Settings className="h-5 w-5 shrink-0 stroke-gray-500 group-hover:stroke-primary-600" />
                   <p className={classNames(closeSidebar ? "hidden" : "")}>
                     Setting
                   </p>
                 </Link>
                 <Link
                   href="/Blog/Help"
-                  className="hover:text-primary-600 group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
+                  className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-primary-600"
                 >
                   <HelpCircle
                     className={
-                      "group-hover:stroke-primary-600 h-5 w-5 shrink-0 stroke-gray-500"
+                      "h-5 w-5 shrink-0 stroke-gray-500 group-hover:stroke-primary-600"
                     }
                   />
                   <p className={classNames(closeSidebar ? "hidden" : "")}>
@@ -289,8 +289,8 @@ export default function Sidebar({
                                 }}
                                 className={classNames(
                                   item.current
-                                    ? "text-primary-600 bg-gray-50"
-                                    : "hover:bg-gray50 hover:text-primary-600 text-gray-700",
+                                    ? "bg-gray-50 text-primary-600"
+                                    : "hover:bg-gray50 text-gray-700 hover:text-primary-600",
                                   "group flex gap-x-3 rounded-md px-2 py-1.5 text-sm font-semibold leading-6",
                                 )}
                               >
@@ -316,22 +316,22 @@ export default function Sidebar({
                       <li className="mt-auto border-b">
                         <Link
                           href="/Blog/Privacy"
-                          className="hover:text-primary-600 group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
+                          className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-primary-600"
                         >
                           <Lock
                             className={
-                              "group-hover:stroke-primary-600 h-5 w-5 shrink-0 stroke-gray-500"
+                              "h-5 w-5 shrink-0 stroke-gray-500 group-hover:stroke-primary-600"
                             }
                           />
                           Privacy
                         </Link>
                         <Link
                           href="/Blog/TOS"
-                          className="hover:text-primary-600 group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50"
+                          className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-primary-600"
                         >
                           <File
                             className={
-                              "group-hover:stroke-primary-600 h-5 w-5 shrink-0 stroke-gray-500"
+                              "h-5 w-5 shrink-0 stroke-gray-500 group-hover:stroke-primary-600"
                             }
                           />
                           <p
