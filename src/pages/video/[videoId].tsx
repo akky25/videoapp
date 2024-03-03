@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import ReactPlayer from "react-player";
 import { FollowButton } from "~/Components/Button/Buttons";
+import LikeDislikeButton from "~/Components/Button/LikeDislikeButton";
 import { ErrorMessage, LoadingMessage } from "~/Components/ErrorMessage";
 import Layout from "~/Components/Layout";
 import {
@@ -120,6 +121,19 @@ const VideoPage: NextPage = () => {
                         <VideoInfo
                           views={video.views}
                           createdAt={video.createdAt}
+                        />
+                      </div>
+                      <div className="flex-inline flex items-end justify-start  gap-4 self-start  ">
+                        <LikeDislikeButton
+                          EngagementData={{
+                            id: video.id,
+                            likes: video.likes,
+                            dislikes: video.dislikes,
+                          }}
+                          viewer={{
+                            hasDisliked: viewer.hasDisliked,
+                            hasLiked: viewer.hasLiked,
+                          }}
                         />
                       </div>
                     </div>
