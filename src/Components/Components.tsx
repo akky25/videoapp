@@ -12,3 +12,4 @@ export {
   UserName,
 } from "./VideoComponent";
 export { default as Description } from "./Description";
+export { default as CommentSection } from "./CommentSection";
