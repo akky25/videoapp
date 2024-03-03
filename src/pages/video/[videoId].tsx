@@ -17,6 +17,7 @@ import {
   VideoTitle,
 } from "~/Components/VideoComponent";
 import { api } from "~/utils/api";
+import { Description } from "~/Components/Components";
 
 const VideoPage: NextPage = () => {
   const router = useRouter();
@@ -160,6 +161,11 @@ const VideoPage: NextPage = () => {
                         }}
                       />
                     </div>
+                    <Description
+                      text={video.description ?? ""}
+                      length={200}
+                      border={true}
+                    />
                   </div>
                 </div>
               </div>

@@ -11,3 +11,4 @@ export {
   VideoInfo,
   UserName,
 } from "./VideoComponent";
+export { default as Description } from "./Description";
