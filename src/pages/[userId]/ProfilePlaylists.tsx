@@ -14,6 +14,9 @@ const ProfilePlaylist: NextPage = () => {
 
   const { data, isLoading, error } = api.playlist.getPlaylistsByUserId.useQuery(
     userId as string,
+    {
+      enabled: !!userId,
+    },
   );
   const errorTypes = !data || data?.length === 0 || error;
 

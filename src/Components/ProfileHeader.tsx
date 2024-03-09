@@ -50,11 +50,16 @@ export default function ProfileHeader() {
     });
   }, [router.pathname, tabs]);
 
-  const { data, isLoading, error } = api.user.getChannelById.useQuery({
-    id: userId as string,
-    // eslint-disable-next-line @typescript-eslint/non-nullable-type-assertion-style
-    viewerId: sessionData?.user?.id as string,
-  });
+  const { data, isLoading, error } = api.user.getChannelById.useQuery(
+    {
+      id: userId as string,
+      // eslint-disable-next-line @typescript-eslint/non-nullable-type-assertion-style
+      viewerId: sessionData?.user?.id as string,
+    },
+    {
+      enabled: !!userId,
+    },
+  );
 
   const channel = data?.user;
   const viewer = data?.viewer;

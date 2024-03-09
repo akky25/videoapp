@@ -15,6 +15,9 @@ const ProfileVideos: NextPage = () => {
   const { userId } = router.query;
   const { data, isLoading, error } = api.video.getVideosByUserId.useQuery(
     userId as string,
+    {
+      enabled: !!userId,
+    },
   );
 
   const errorTypes = !data || data.videos?.length === 0 || error;

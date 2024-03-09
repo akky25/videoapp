@@ -50,7 +50,7 @@ export const PlaylistPage: React.FC<PlaylistPageProps> = ({
   return (
     <>
       <Head>
-        <title>{playlist?.title ? playlist?.title + " - VidChill" : ""}</title>
+        <title>{playlist?.title ? playlist?.title + " - VidApp" : ""}</title>
         <meta name="description" content={playlist?.description || ""} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -70,22 +70,20 @@ export const PlaylistPage: React.FC<PlaylistPageProps> = ({
             length={250}
             border={false}
           />
-          <div className="flex flex-row  place-content-between gap-x-4 ">
-            <Link href={`/${user.id}/ProfileVideos`} key={user.id}>
-              <div className="mt-4 flex flex-row gap-2 ">
-                <UserImage image={user.image || ""} />
-                <div className="flex flex-col ">
-                  <p className="w-max text-sm font-semibold leading-6 text-gray-900">
-                    {user.name || ""}
-                  </p>
-                  <p className=" text-sm text-gray-600">
-                    {user.followers}
-                    <span> Followers</span>
-                  </p>
-                </div>
+          <Link href={`/${user.id}/ProfileVideos`} key={user.id}>
+            <div className="mt-4 flex flex-row gap-2 ">
+              <UserImage image={user.image || ""} />
+              <div className="flex flex-col ">
+                <p className="w-max text-sm font-semibold leading-6 text-gray-900">
+                  {user.name || ""}
+                </p>
+                <p className=" text-sm text-gray-600">
+                  {user.followers}
+                  <span> Followers</span>
+                </p>
               </div>
-            </Link>
-          </div>
+            </div>
+          </Link>
         </div>
         <div className="gap-4 lg:w-1/2 lg:px-0 lg:pr-6 ">
           <SmallSingleColumnVideo
@@ -93,7 +91,7 @@ export const PlaylistPage: React.FC<PlaylistPageProps> = ({
               .sort(
                 (a, b) =>
                   new Date(b.createdAt).getTime() -
-                  new Date(a.createdAt).getTime()
+                  new Date(a.createdAt).getTime(),
               )
               .map((video) => ({
                 id: video?.id || "",
