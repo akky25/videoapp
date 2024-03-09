@@ -18,7 +18,7 @@ import {
   LogOut,
 } from "./Icons/Icons";
 import Link from "next/link";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { Fragment, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Button } from "./Button/Buttons";
@@ -350,7 +350,12 @@ export default function Sidebar({
                               )}
                             </p>
                           </div>
-                          <Button variant="tertiary-gray" href="#" size="lg">
+                          <Button
+                            variant="tertiary-gray"
+                            href="#"
+                            size="lg"
+                            onClick={() => signOut()}
+                          >
                             <LogOut className="w-5 stroke-gray-600" />
                           </Button>
                         </div>

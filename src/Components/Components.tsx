@@ -13,3 +13,5 @@ export {
 } from "./VideoComponent";
 export { default as Description } from "./Description";
 export { default as CommentSection } from "./CommentSection";
+export { Thumbnail } from "./Thumbnail";
+export { MultiColumnPlaylist, SinglePlaylist } from "./PlaylistComponent";

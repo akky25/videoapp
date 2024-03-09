@@ -32,7 +32,7 @@ const ProfileVideos: NextPage = () => {
               variant="primary"
               size="2xl"
               href="/profile/edit"
-              className="ml-2 flex"
+              className=" flex"
             >
               <Plus className="mr-2 h-5 w-5 shrink-0 stroke-white" />
               New Video
@@ -58,7 +58,9 @@ const ProfileVideos: NextPage = () => {
         <>
           <ProfileHeader />
           {errorTypes ? (
-            <Error />
+            <div className="!-ml-0">
+              <Error />
+            </div>
           ) : (
             <MuliColumnVideo
               videos={data.videos.map((video) => ({
