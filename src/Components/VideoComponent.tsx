@@ -32,30 +32,28 @@ export const MuliColumnVideo: React.FC<VideoComponentProps> = ({
           console.log(video.thumbnailUrl);
 
           return (
-            <>
-              <Link
-                href={`/video/${video.id}`}
-                className="flex flex-col items-start justify-between hover:bg-gray-100"
-                key={video.id}
-              >
-                <div className="relative w-full">
-                  <Thumbnail thumbnailUrl={video.thumbnailUrl} />
-                  <div className="max-w-xl">
-                    <div className="items-top relative mt-4 flex gap-x-4 ">
-                      <UserImage image={user.image || ""} />
-                      <div className="w-full">
-                        <VideoTitle title={video.title} limitHeight={true} />
-                        <VideoInfo
-                          views={video.views}
-                          createdAt={video.createdAt}
-                        />
-                        <UserName name={user.name || ""} />
-                      </div>
+            <Link
+              href={`/video/${video.id}`}
+              className="flex flex-col items-start justify-between hover:bg-gray-100"
+              key={video.id}
+            >
+              <div className="relative w-full">
+                <Thumbnail thumbnailUrl={video.thumbnailUrl} />
+                <div className="max-w-xl">
+                  <div className="items-top relative mt-4 flex gap-x-4 ">
+                    <UserImage image={user.image || ""} />
+                    <div className="w-full">
+                      <VideoTitle title={video.title} limitHeight={true} />
+                      <VideoInfo
+                        views={video.views}
+                        createdAt={video.createdAt}
+                      />
+                      <UserName name={user.name || ""} />
                     </div>
                   </div>
                 </div>
-              </Link>
-            </>
+              </div>
+            </Link>
           );
         })}
       </div>
@@ -178,7 +176,7 @@ export function UserImage({
   className?: string;
 }) {
   return (
-    <div className={`relative h-9 w-9 ${className}`}>
+    <div className={`relative h-10 w-10 ${className}`}>
       <Image
         src={image || "/profile.jpg"}
         alt=""
