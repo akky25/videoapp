@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import ReactPlayer from "react-player";
-import { FollowButton } from "~/Components/Button/Buttons";
+import { FollowButton, SaveButton } from "~/Components/Button/Buttons";
 import LikeDislikeButton from "~/Components/Button/LikeDislikeButton";
 import { ErrorMessage, LoadingMessage } from "~/Components/ErrorMessage";
 import Layout from "~/Components/Layout";
@@ -136,6 +136,7 @@ const VideoPage: NextPage = () => {
                             hasLiked: viewer.hasLiked,
                           }}
                         />
+                        <SaveButton videoId={video.id} />
                       </div>
                     </div>
                     <div className="flex flex-row  place-content-between gap-x-4 ">

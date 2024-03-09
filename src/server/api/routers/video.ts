@@ -1,6 +1,10 @@
 import { EngagementType } from "@prisma/client";
 import { z } from "zod";
-import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+import {
+  createTRPCRouter,
+  protectedProcedure,
+  publicProcedure,
+} from "~/server/api/trpc";
 
 export const videoRouter = createTRPCRouter({
   getVideoById: publicProcedure
@@ -198,5 +202,38 @@ export const videoRouter = createTRPCRouter({
       );
 
       return { videos: videosWithCounts, users: users };
+    }),
+
+  addVideoToPlaylist: protectedProcedure
+    .input(
+      z.object({
+        playlistId: z.string(),
+        videoId: z.string(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const playlistAlreadyHasVideo = await ctx.db.playlistHasVideo.findMany({
+        where: {
+          playlistId: input.playlistId,
+          videoId: input.videoId,
+        },
+      });
+      if (playlistAlreadyHasVideo.length > 0) {
+        const deleteVideo = await ctx.db.playlistHasVideo.deleteMany({
+          where: {
+            playlistId: input.playlistId,
+            videoId: input.videoId,
+          },
+        });
+        return deleteVideo;
+      } else {
+        const playlistHasVideo = await ctx.db.playlistHasVideo.create({
+          data: {
+            playlistId: input.playlistId,
+            videoId: input.videoId,
+          },
+        });
+        return playlistHasVideo;
+      }
     }),
 });

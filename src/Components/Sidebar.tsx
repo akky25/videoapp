@@ -155,7 +155,7 @@ export default function Sidebar({
       <div
         className={classNames(
           closeSidebar ? "lg:w-20" : "lg:w-56",
-          "lg:z-400 bottom-0 top-16 hidden lg:fixed lg:flex lg:flex-col",
+          "bottom-0 top-16 hidden lg:fixed lg:z-40 lg:flex lg:flex-col",
         )}
       >
         <div className="flex grow flex-col gap-y-5 overflow-y-auto border border-gray-200 bg-white px-6 pb-4">
@@ -301,13 +301,7 @@ export default function Sidebar({
                                   : item.icon(
                                       "h-5 w-5 shrink-0 stroke-gray-500 group-hover:stroke-primary-600",
                                     )}
-                                <p
-                                  className={classNames(
-                                    closeSidebar ? "hidden" : "",
-                                  )}
-                                >
-                                  {item.name}
-                                </p>
+                                {item.name}
                               </Link>
                             </li>
                           ))}

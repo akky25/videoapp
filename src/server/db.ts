@@ -11,7 +11,8 @@ export const db =
   new PrismaClient({
     log:
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
+      // env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
+      [],
   });
 
 if (env.NODE_ENV !== "production") globalForPrisma.prisma = db;
