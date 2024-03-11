@@ -16,3 +16,5 @@ export { default as CommentSection } from "./CommentSection";
 export { default as Layout } from "./Layout";
 export { Thumbnail } from "./Thumbnail";
 export { MultiColumnPlaylist, SinglePlaylist } from "./PlaylistComponent";
+export { ErrorMessage, LoadingMessage } from "./ErrorMessage";
+export { default as ProfileHeader } from "./ProfileHeader";

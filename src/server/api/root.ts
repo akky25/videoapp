@@ -4,6 +4,7 @@ import { videoEngagementRouter } from "./routers/videoEngagement";
 import { userRouter } from "./routers/user";
 import { commentRouter } from "./routers/comment";
 import { playlistRouter } from "./routers/playlist";
+import { announcementRouter } from "./routers/announcement";
 
 /**
  *
@@ -17,6 +18,7 @@ export const appRouter = createTRPCRouter({
   videoEngagement: videoEngagementRouter,
   comment: commentRouter,
   playlist: playlistRouter,
+  announcement: announcementRouter,
 });
 
 // export type definition of API
