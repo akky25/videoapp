@@ -1,7 +1,7 @@
 import { type NextPage } from "next";
 import { useSession } from "next-auth/react";
 import Head from "next/head";
-import { PublishedButton } from "~/Components/Button/Buttons";
+import { DeleteButton, PublishedButton } from "~/Components/Button/Buttons";
 import {
   ErrorMessage,
   LoadingMessage,
@@ -176,12 +176,12 @@ const Dashboard: NextPage = () => {
                               </td>
                               <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-600">
                                 <div className="flex flex-row gap-2">
-                                  {/* <DeleteButton
+                                  <DeleteButton
                                     videoId={video.id}
                                     refetch={refetch}
                                   />
 
-                                  <EditButton
+                                  {/* <EditButton
                                     video={{
                                       id: video?.id || "",
                                       title: video?.title || "",
