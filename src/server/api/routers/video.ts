@@ -152,7 +152,7 @@ export const videoRouter = createTRPCRouter({
         },
       });
 
-      const videos = videosWithUser.map(({ user, ...video }) => video);
+      const videos = videosWithUser.map(({ user: _, ...video }) => video);
       const users = videosWithUser.map(({ user }) => user);
 
       const videosWithCounts = await Promise.all(
@@ -208,7 +208,7 @@ export const videoRouter = createTRPCRouter({
         },
       });
 
-      const videos = videosWithUser.map(({ user, ...video }) => video);
+      const videos = videosWithUser.map(({ user: _, ...video }) => video);
       const users = videosWithUser.map(({ user }) => user);
 
       const videosWithCounts = await Promise.all(
@@ -242,7 +242,7 @@ export const videoRouter = createTRPCRouter({
         },
       });
 
-      const videos = videosWithUser.map(({ user, ...video }) => video);
+      const videos = videosWithUser.map(({ user: _, ...video }) => video);
       const users = videosWithUser.map(({ user }) => user);
       const videosWithCounts = await Promise.all(
         videos.map(async (video) => {
@@ -322,5 +322,31 @@ export const videoRouter = createTRPCRouter({
         },
       });
       return deletedVideo;
+    }),
+
+  updateVideo: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+        userId: z.string(),
+        title: z.string().optional(),
+        description: z.string().optional(),
+        thumbnailUrl: z.string().optional(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const video = await checkVideoOwnership(ctx, input.id, input.userId);
+      const updateVideo = await ctx.db.video.update({
+        where: {
+          id: video.id,
+        },
+        data: {
+          title: input.title ?? video.title,
+          description: input.description ?? video.description,
+          thumbnailUrl: input.thumbnailUrl ?? video.thumbnailUrl,
+        },
+      });
+
+      return updateVideo;
     }),
 });

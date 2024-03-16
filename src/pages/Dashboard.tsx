@@ -1,7 +1,11 @@
 import { type NextPage } from "next";
 import { useSession } from "next-auth/react";
 import Head from "next/head";
-import { DeleteButton, PublishedButton } from "~/Components/Button/Buttons";
+import {
+  DeleteButton,
+  EditButton,
+  PublishedButton,
+} from "~/Components/Button/Buttons";
 import {
   ErrorMessage,
   LoadingMessage,
@@ -181,15 +185,15 @@ const Dashboard: NextPage = () => {
                                     refetch={refetch}
                                   />
 
-                                  {/* <EditButton
+                                  <EditButton
                                     video={{
                                       id: video?.id || "",
-                                      title: video?.title || "",
-                                      description: video?.description || "",
-                                      thumbnailUrl: video?.thumbnailUrl || "",
+                                      title: video?.title ?? "",
+                                      description: video?.description ?? "",
+                                      thumbnailUrl: video?.thumbnailUrl ?? "",
                                     }}
                                     refetch={refetch}
-                                  /> */}
+                                  />
                                 </div>
                               </td>
                             </tr>
