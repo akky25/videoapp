@@ -5,6 +5,7 @@ import {
   DeleteButton,
   EditButton,
   PublishedButton,
+  UploadButton,
 } from "~/Components/Button/Buttons";
 import {
   ErrorMessage,
@@ -87,9 +88,7 @@ const Dashboard: NextPage = () => {
                   </div>
                 </div>
 
-                <div className="mt-6 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-3 sm:space-y-0 sm:space-x-reverse md:mt-0 md:flex-row md:space-x-3">
-                  {/* <UploadButton refetch={refetch} /> */}
-                </div>
+                <UploadButton refetch={refetch} />
               </div>
 
               <div>
