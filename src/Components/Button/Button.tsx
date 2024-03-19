@@ -24,7 +24,6 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
     },
     ref,
   ) => {
-    console.log({ ref });
     const sizeClasses = {
       sm: "px-2 py-1 text-xs",
       md: "px-2 py-1 text-sm",

@@ -8,7 +8,6 @@ import { api } from "~/utils/api";
 const Playlist: NextPage = () => {
   const router = useRouter();
   const { playlistId } = router.query;
-  console.log({ playlistId });
   const { data, isLoading, error } = api.playlist.getPlaylistById.useQuery(
     playlistId as string,
     {
