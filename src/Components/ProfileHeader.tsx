@@ -111,7 +111,7 @@ export default function ProfileHeader() {
                 <div className="!-mt-6 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
                   <div className="flex">
                     <UserImage
-                      className="rounded-full ring-4 ring-white sm:h-32 sm:w-32"
+                      className="rounded-full ring-4 ring-gray-100 sm:h-32 sm:w-32"
                       image={channel.image ?? ""}
                     />
                   </div>
@@ -141,7 +141,7 @@ export default function ProfileHeader() {
                           href="/Settings"
                           className="!-5 ml-2 flex"
                         >
-                          <Edit className="mr-2 h-5 w-5 shrink-0 stroke-white" />
+                          <Edit className="mr-2 h-5 w-5 shrink-0 stroke-gray-100 " />
                           Edit
                         </Button>
                       ) : (

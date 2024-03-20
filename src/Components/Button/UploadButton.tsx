@@ -86,7 +86,7 @@ export default function UploadButton({
         className="ml-2 mt-6 flex"
         size="2xl"
       >
-        <Plus className="mr-2 h-5 w-5 shrink-0 stroke-white" />
+        <Plus className=" mr-2 h-5 w-5 shrink-0 stroke-gray-100" />
         Upload
       </Button>
 
@@ -106,7 +106,7 @@ export default function UploadButton({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+            <div className="fixed inset-0 bg-gray-300 opacity-75 transition-opacity" />
           </Transition.Child>
 
           <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -120,7 +120,7 @@ export default function UploadButton({
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-gray-100 px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
                   <>
                     <div className="sm:flex sm:items-start  ">
                       <div className="mt-3 w-full text-center sm:ml-4 sm:mt-0 sm:text-left">
@@ -131,16 +131,18 @@ export default function UploadButton({
                           Upload Video{" "}
                         </Dialog.Title>
                         <div className="col-span-full">
-                          <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                          <div className="mt-2 flex justify-center rounded-lg border-4 border-dashed border-gray-800/25 px-6 py-10">
                             <div className="text-center">
                               {uploadedVideo ? (
-                                <p>Your video has been attached.</p>
+                                <p className="text-gray-700">
+                                  Your video has been attached.
+                                </p>
                               ) : (
                                 <div>
                                   <div className="mt-4 flex text-sm leading-6 text-gray-600">
                                     <label
                                       htmlFor="file-upload"
-                                      className="relative cursor-pointer rounded-md bg-white font-semibold text-primary-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-primary-600 focus-within:ring-offset-2 hover:text-primary-500"
+                                      className="relative cursor-pointer rounded-md bg-gray-100 font-semibold text-primary-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-primary-600 focus-within:ring-offset-2 hover:text-primary-500"
                                     >
                                       <span>Upload a Video</span>
                                       <input

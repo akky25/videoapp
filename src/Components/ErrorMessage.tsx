@@ -43,7 +43,7 @@ export function LoadingMessage() {
     <div className="relative mt-16 flex w-full  flex-col items-center justify-center gap-2 text-center">
       <ReactLoading
         type={"spinningBubbles"}
-        color={"#11999E"}
+        color={"#b3d81e"}
         height={667}
         width={375}
       />

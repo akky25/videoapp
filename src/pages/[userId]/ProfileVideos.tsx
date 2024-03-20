@@ -37,7 +37,7 @@ const ProfileVideos: NextPage = () => {
               href="/profile/edit"
               className=" flex"
             >
-              <Plus className="mr-2 h-5 w-5 shrink-0 stroke-white" />
+              <Plus className="mr-2 h-5 w-5 shrink-0 stroke-gray-100 " />
               New Video
             </Button>
           </ErrorMessage>

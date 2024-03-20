@@ -46,7 +46,7 @@ export default function AnnouncementButton({
         ${
           userChoice.like
             ? "group text-primary-600 hover:text-gray-900 group-hover:stroke-gray-900 "
-            : "group bg-white text-gray-600  hover:text-primary-600 group-hover:stroke-primary-600"
+            : "group bg-gray-100 text-gray-600  hover:text-primary-600 group-hover:stroke-primary-600"
         }`}
         >
           <ThumbsUp
@@ -75,7 +75,7 @@ export default function AnnouncementButton({
         ${
           userChoice.dislike
             ? "group text-error-600 hover:text-gray-900 group-hover:stroke-gray-900 "
-            : "group bg-white text-gray-600  hover:text-error-600 group-hover:stroke-error-600"
+            : "group bg-gray-100 text-gray-600  hover:text-error-600 group-hover:stroke-error-600"
         }`}
         >
           <ThumbsDown

@@ -44,7 +44,7 @@ export default function PublishedButton({ video }: PublishedButton) {
             })
           }
           className={classNames(
-            userChoice.publish ? "bg-primary-600" : "bg-gray-200",
+            userChoice.publish ? "bg-primary-600" : "bg-slate-400",
             "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2",
           )}
         >

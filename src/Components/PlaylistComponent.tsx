@@ -161,7 +161,7 @@ export function SinglePlaylist({
         <Thumbnail thumbnailUrl={playlist?.playlistThumbnail} />
         <div className="absolute inset-x-0 bottom-0 max-h-32 rounded-b-2xl bg-gray-500 bg-opacity-60 backdrop-blur-lg">
           <div className="m-6">
-            <div className="mt-2 flex place-content-between items-start  gap-x-2 text-sm font-semibold text-white">
+            <div className="mt-2 flex place-content-between items-start  gap-x-2 text-sm font-semibold text-gray-100 ">
               <p>Playlist</p>
               <p>
                 {playlist.videoCount}
@@ -169,7 +169,7 @@ export function SinglePlaylist({
               </p>
             </div>
             <div className="mt-2 flex items-start gap-x-2 ">
-              <p className="text-sm text-white">
+              <p className="text-sm text-gray-100 ">
                 {moment(playlist.createdAt).fromNow()}
               </p>
             </div>

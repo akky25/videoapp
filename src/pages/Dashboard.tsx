@@ -155,8 +155,8 @@ const Dashboard: NextPage = () => {
                             <tr key={video.id}>
                               <PublishedButton video={video} />
                               <td className="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
-                                <div className="flex">
-                                  <div className="h-16 w-16 flex-shrink-0">
+                                <div className="flex items-center">
+                                  <div className="flex h-16 w-16 flex-shrink-0 items-center">
                                     <Thumbnail
                                       thumbnailUrl={video.thumbnailUrl ?? ""}
                                     />
@@ -167,10 +167,10 @@ const Dashboard: NextPage = () => {
                                 </div>
                               </td>
                               <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                                <span className="inline-flex items-center rounded-full bg-success-100 px-2 py-1 text-xs font-medium text-success-700">
+                                <span className="mr-1 inline-flex items-center rounded-full bg-success-100 px-2 py-1 text-xs font-medium text-success-700">
                                   {video.likes} Likes
                                 </span>
-                                <span className="inline-flex items-center rounded-full  bg-error-100 px-2 py-1 text-xs font-medium text-error-700">
+                                <span className="ml-1 inline-flex items-center rounded-full  bg-error-100 px-2 py-1 text-xs font-medium text-error-700">
                                   {video.dislikes} Dislikes
                                 </span>
                               </td>

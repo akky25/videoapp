@@ -46,14 +46,14 @@ export default function LikeDislikeButton({
         className={`focus group relative inline-flex items-center rounded-l-md px-2 py-2 ring-1 ring-inset ring-gray-300  focus:z-10
         ${
           userChoice.like
-            ? "group bg-primary-600 text-white hover:text-gray-900 group-hover:stroke-gray-900"
+            ? "group bg-primary-600 text-gray-100 hover:text-gray-900 group-hover:stroke-gray-900"
             : "bg-background group text-gray-600 hover:text-primary-600 group-hover:stroke-primary-600"
         }`}
       >
         <ThumbsUp
           className={`group h-4 w-4 shrink-0 ${
             userChoice.like
-              ? "group fill-white group-hover:stroke-gray-900"
+              ? "group fill-gray-100 group-hover:stroke-gray-900"
               : "group stroke-gray-600 group-hover:stroke-primary-600"
           }`}
         />
@@ -72,14 +72,14 @@ export default function LikeDislikeButton({
         className={`focus group relative -ml-px inline-flex items-center rounded-r-md  px-2 py-2 ring-1 ring-inset ring-gray-300 focus:z-10
         ${
           userChoice.dislike
-            ? "group bg-error-600 text-white hover:text-gray-900 group-hover:stroke-gray-900"
+            ? "group bg-error-600 text-gray-100 hover:text-gray-900 group-hover:stroke-gray-900"
             : "bg-background group text-gray-600 hover:text-error-600 group-hover:stroke-error-600"
         }`}
       >
         <ThumbsDown
           className={`group h-4 w-4 shrink-0 ${
             userChoice.dislike
-              ? "group fill-white group-hover:stroke-gray-900"
+              ? "group fill-gray-100 group-hover:stroke-gray-900"
               : "group stroke-gray-600 group-hover:stroke-error-600"
           }`}
         />
