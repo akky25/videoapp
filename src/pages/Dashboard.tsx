@@ -75,7 +75,7 @@ const Dashboard: NextPage = () => {
           <Error />
         ) : (
           <>
-            <div className="flex flex-col gap-8 bg-white pt-3 shadow sm:rounded-lg">
+            <div className="flex flex-col gap-8  pt-3 shadow sm:rounded-lg">
               <div className="md:flex md:items-center md:justify-between md:space-x-5">
                 <div className="flex items-start space-x-5">
                   <div className="pt-1.5">
@@ -150,7 +150,7 @@ const Dashboard: NextPage = () => {
                             </th>
                           </tr>
                         </thead>
-                        <tbody className="divide-y divide-gray-200 bg-white">
+                        <tbody className="divide-y divide-gray-200 ">
                           {data?.videos.map((video) => (
                             <tr key={video.id}>
                               <PublishedButton video={video} />

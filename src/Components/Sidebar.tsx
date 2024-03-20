@@ -7,7 +7,6 @@ import {
   Folder,
   HelpCircle,
   Home,
-  Logo,
   MessagePlusSquare,
   Settings,
   ThumbsUp,
@@ -16,6 +15,7 @@ import {
   VideoRecorder,
   File,
   LogOut,
+  Logo,
 } from "./Icons/Icons";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
@@ -23,6 +23,7 @@ import { Fragment, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Button } from "./Button/Buttons";
 import { UserImage } from "./Components";
+import { useTheme } from "./ThemeProvider";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -45,6 +46,8 @@ export default function Sidebar({
   const router = useRouter();
   const { data: sessionData } = useSession();
   const userId = sessionData?.user.id;
+
+  const { darkMode } = useTheme();
 
   function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ");
@@ -158,7 +161,7 @@ export default function Sidebar({
           "bottom-0 top-16 hidden lg:fixed lg:z-40 lg:flex lg:flex-col",
         )}
       >
-        <div className="flex grow flex-col gap-y-5 overflow-y-auto border border-gray-200 bg-white px-6 pb-4">
+        <div className="bg-background flex grow flex-col gap-y-5 overflow-y-auto border border-gray-200  px-6 pb-4">
           <nav className="flex flex-1 flex-col pt-8">
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
               <li>
@@ -269,10 +272,13 @@ export default function Sidebar({
                     <Close className="h-6 w-6" aria-hidden="true" />
                   </button>
                 </div>
-                <div className=" flex grow  flex-col gap-y-5 overflow-y-auto border-r  border-gray-200 bg-white  px-6 pb-4">
+                <div className=" bg-background flex  grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200   px-6 pb-4">
                   <nav className="flex flex-1 flex-col pt-4">
                     <ul role="list" className="flex flex-1 flex-col gap-y-7">
-                      <Logo className="w-24" />
+                      <Logo
+                        className="w-32"
+                        theme={darkMode ? "dark" : "light"}
+                      />
                       <li className="border-t">
                         <ul role="list" className="-mx-2 space-y-1  pt-3 ">
                           {mobileNavigation.map((item) => (

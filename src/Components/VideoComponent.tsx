@@ -29,8 +29,6 @@ export const MuliColumnVideo: React.FC<VideoComponentProps> = ({
           const user = users[index];
           if (!user) return null;
 
-          console.log(video.thumbnailUrl);
-
           return (
             <Link
               href={`/video/${video.id}`}

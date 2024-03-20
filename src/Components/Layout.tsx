@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Menu } from "./Icons/Icons";
 import Navbar from "./Navbar";
 import { Footer, Sidebar } from "./Components";
+import { ToggleThemeButton } from "./Button/Buttons";
 
 interface LayoutProps {
   children: JSX.Element;
@@ -20,11 +21,12 @@ export default function Layout({ children, closeSidebar }: LayoutProps) {
       <Navbar>
         <button
           type="button"
-          className="-mx-2 inline-flex items-center justify-center rounded-md p-2 focus:outline-none"
+          className=" inline-flex items-center justify-center rounded-md p-2 hover:bg-gray-100 focus:outline-none"
           onClick={() => setSidebarOpen(true)}
         >
           <Menu className="h-6 w-6 stroke-gray-400" aria-hidden="true" />
         </button>
+        <ToggleThemeButton />
       </Navbar>
       <Sidebar
         isOpen={sidebarOpen}

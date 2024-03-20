@@ -49,7 +49,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="fixed bottom-0 z-50 w-full border border-gray-200 bg-white shadow-sm ">
+    <footer className="bg-background fixed bottom-0 z-50 w-full border  border-gray-200 shadow-sm">
       <nav className="isolate flex rounded-lg shadow" aria-label="Tabs">
         {tabs.map((tab) => (
           <Link

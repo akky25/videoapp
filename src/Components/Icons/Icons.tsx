@@ -18,6 +18,7 @@ export { default as UserPlus } from "./UserPlus";
 export { default as FolderPlus } from "./FolderPlus";
 export { default as Plus } from "./Plus";
 export { Logo, LogoMini } from "./Logo";
+// export { Logo1, LogoMini1 } from "./Logo1";
 export { default as Edit } from "./Edit";
 export { default as Upload } from "./Upload";
 export { default as Trash } from "./Trash";

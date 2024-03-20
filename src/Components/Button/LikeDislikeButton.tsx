@@ -47,7 +47,7 @@ export default function LikeDislikeButton({
         ${
           userChoice.like
             ? "group bg-primary-600 text-white hover:text-gray-900 group-hover:stroke-gray-900"
-            : "group bg-white text-gray-600 hover:text-primary-600 group-hover:stroke-primary-600"
+            : "bg-background group text-gray-600 hover:text-primary-600 group-hover:stroke-primary-600"
         }`}
       >
         <ThumbsUp
@@ -73,7 +73,7 @@ export default function LikeDislikeButton({
         ${
           userChoice.dislike
             ? "group bg-error-600 text-white hover:text-gray-900 group-hover:stroke-gray-900"
-            : "group bg-white text-gray-600 hover:text-error-600 group-hover:stroke-error-600"
+            : "bg-background group text-gray-600 hover:text-error-600 group-hover:stroke-error-600"
         }`}
       >
         <ThumbsDown

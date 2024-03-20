@@ -3,7 +3,6 @@ import {
   Brush,
   DotsVertical,
   HelpCircle,
-  Logo,
   MessagePlusSquare,
   Search,
   Settings,
@@ -11,6 +10,8 @@ import {
   File,
   Lock,
   LogOut,
+  Logo,
+  LogoMini,
 } from "./Icons/Icons";
 import {
   type ChangeEvent,
@@ -22,10 +23,12 @@ import router from "next/router";
 import { Menu, Transition } from "@headlessui/react";
 import { signIn, useSession, signOut } from "next-auth/react";
 import { UserImage } from "./Components";
-import { Button } from "./Button/Buttons";
+import { Button, ToggleThemeButton } from "./Button/Buttons";
+import { useTheme } from "./ThemeProvider";
 
 interface NavbarProps {
-  children?: JSX.Element;
+  // children?: JSX.Element;
+  children: React.ReactNode;
 }
 
 interface NavigationItem {
@@ -38,6 +41,8 @@ interface NavigationItem {
 export default function Navbar({ children }: NavbarProps) {
   const { data: sessionData } = useSession();
   const userId = sessionData?.user.id;
+
+  const { darkMode } = useTheme();
 
   const signedInNavigation: NavigationItem[] = [
     {
@@ -142,15 +147,22 @@ export default function Navbar({ children }: NavbarProps) {
 
   return (
     <>
-      <div className="fixed z-50 w-full border border-gray-200 bg-white shadow-sm lg:overflow-y-visible">
-        <div className="mx-auto flex max-w-full px-6 lg:px-16 xl:grid xl:grid-cols-12">
+      <div className="bg-background fixed z-50 w-full border  border-gray-200 shadow-sm lg:overflow-y-visible">
+        <div className="mx-auto flex max-w-full px-2 sm:px-6 lg:px-16 xl:grid xl:grid-cols-12">
           <div className="flex flex-shrink-0 items-center lg:static xl:col-span-2">
             <Link href="/#" aria-label="Home">
-              <Logo className="h-10" />
+              <Logo
+                className="hidden sm:block sm:h-7 lg:h-10"
+                theme={darkMode ? "dark" : "light"}
+              />
+              <LogoMini
+                className="h-9 sm:hidden"
+                theme={darkMode ? "dark" : "light"}
+              />
             </Link>
           </div>
           <div className="w-full min-w-0 flex-1  lg:px-0 xl:col-span-8">
-            <div className="g:mx-0 flex items-center px-6 py-4 lg:max-w-none xl:mx-0 xl:px-0 ">
+            <div className="g:mx-0 flex items-center px-2 py-4 sm:px-6 lg:max-w-none xl:mx-0 xl:px-0 ">
               <div className="w-full">
                 <label htmlFor="search" className="sr-only">
                   Search
@@ -162,7 +174,7 @@ export default function Navbar({ children }: NavbarProps) {
                   <input
                     id="search"
                     name="search"
-                    className="focus:ring-primary-500 block w-full rounded-md border-0 py-1.5 pl-10 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 "
+                    className="bg-background block w-full rounded-md border-0 py-1.5 pl-10 pr-3 text-gray-900 outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6 "
                     placeholder="Search"
                     type="search"
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -174,13 +186,14 @@ export default function Navbar({ children }: NavbarProps) {
               </div>
             </div>
           </div>
+
           <div className="flex items-center lg:hidden">{children}</div>
 
           <div className="m-0 hidden w-max px-0 lg:flex lg:items-center lg:justify-end xl:col-span-2">
             {/* 3 dots  and Profile dropdown */}
             <Menu as="div" className="relative ml-5 flex-shrink-0">
               <div>
-                <Menu.Button className="focus:ring-primary-500 flex rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2">
+                <Menu.Button className="flex rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
                   {sessionData ? (
                     <UserImage image={sessionData?.user.image ?? ""} />
                   ) : (
@@ -197,7 +210,7 @@ export default function Navbar({ children }: NavbarProps) {
                 leaveFrom="transform scale-100 opacity-100"
                 leaveTo="transform scale-95 opacity-0"
               >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <Menu.Items className="bg-background absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md  py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                   {sessionData ? (
                     <div className="mx-4 my-2 flex">
                       <UserImage image={sessionData?.user.image ?? ""} />
@@ -268,6 +281,7 @@ export default function Navbar({ children }: NavbarProps) {
                 </Button>
               </div>
             )}
+            <ToggleThemeButton />
           </div>
         </div>
       </div>
