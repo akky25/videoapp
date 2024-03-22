@@ -136,10 +136,10 @@ export default function EditButton({ video, refetch }: EditButtonProps) {
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
+            enterFrom="opacity-50"
+            enterTo="opacity-75"
             leave="ease-in duration-200"
-            leaveFrom="opacity-100"
+            leaveFrom="opacity-75"
             leaveTo="opacity-0"
           >
             <div className="fixed inset-0 bg-gray-500 opacity-75 transition-opacity" />
