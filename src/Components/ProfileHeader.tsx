@@ -145,6 +145,7 @@ export default function ProfileHeader() {
                           Edit
                         </Button>
                       ) : (
+                        // <SettingButton />
                         <FollowButton
                           followingId={userId as string}
                           viewer={{

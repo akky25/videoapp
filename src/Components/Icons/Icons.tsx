@@ -36,3 +36,4 @@ export {
 } from "./GreenIcons";
 
 export { default as Close } from "./Close";
+export { default as Camera } from "./Camera";
