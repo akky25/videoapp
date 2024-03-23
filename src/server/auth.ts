@@ -60,11 +60,9 @@ export const authOptions: NextAuthOptions = {
       from: env.EMAIL_FROM,
     }),
   ],
-  theme: {
-    colorScheme: "auto", // "auto" | "dark" | "light"
-    brandColor: "#A1C218", // Hex color code
-    logo: "/logo.svg", // Absolute URL to image
-    buttonText: "#0d1117", // Hex color code
+  pages: {
+    signIn: "/auth/email-signin", // カスタムサインインページのパスを指定
+    verifyRequest: "/auth/verify-request", // カスタムサインインページのパスを指定
   },
 };
 
