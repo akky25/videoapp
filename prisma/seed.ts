@@ -133,24 +133,16 @@ async function main() {
         emailVerified: user.emailVerified
           ? new Date(user.emailVerified)
           : undefined,
-        image: user.image
-          ? `https://res.cloudinary.com/${cloudinaryName}${user.image}`
-          : null,
-        backgroundImage: user.backgroundImage
-          ? `https://res.cloudinary.com/${cloudinaryName}${user.backgroundImage}`
-          : null,
+        image: user.image ? user.image : null,
+        backgroundImage: user.backgroundImage ? user.backgroundImage : null,
       },
       create: {
         ...user,
         emailVerified: user.emailVerified
           ? new Date(user.emailVerified)
           : undefined,
-        image: user.image
-          ? `https://res.cloudinary.com/${cloudinaryName}${user.image}`
-          : null,
-        backgroundImage: user.backgroundImage
-          ? `https://res.cloudinary.com/${cloudinaryName}${user.backgroundImage}`
-          : null,
+        image: user.image ? user.image : null,
+        backgroundImage: user.backgroundImage ? user.backgroundImage : null,
       },
     }),
   );

@@ -119,7 +119,7 @@ export default function Sidebar({
     },
     {
       name: "Feedback",
-      path: `mailto:vidchill@vidchill.com`,
+      path: `mailto:vidapp@vidapp.com`,
       icon: (className) => <MessagePlusSquare className={className} />,
       current: router.pathname === `/Feedback`,
     },
@@ -133,7 +133,7 @@ export default function Sidebar({
     },
     {
       name: "Feedback",
-      path: `mailto:vidchill@vidchill.com`,
+      path: `mailto:vidapp@vidapp.com`,
       icon: (className) => <MessagePlusSquare className={className} />,
       current: router.pathname === `/Feedback`,
     },
@@ -161,7 +161,7 @@ export default function Sidebar({
           "bottom-0 top-16 hidden lg:fixed lg:z-40 lg:flex lg:flex-col",
         )}
       >
-        <div className="bg-background flex grow flex-col gap-y-5 overflow-y-auto border border-gray-200  px-6 pb-4">
+        <div className="flex grow flex-col gap-y-5 overflow-y-auto border border-gray-200 bg-background  px-6 pb-4">
           <nav className="flex flex-1 flex-col pt-8">
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
               <li>
@@ -272,7 +272,7 @@ export default function Sidebar({
                     <Close className="h-6 w-6" aria-hidden="true" />
                   </button>
                 </div>
-                <div className=" bg-background flex  grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200   px-6 pb-4">
+                <div className=" flex grow  flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-background   px-6 pb-4">
                   <nav className="flex flex-1 flex-col pt-4">
                     <ul role="list" className="flex flex-1 flex-col gap-y-7">
                       <Logo

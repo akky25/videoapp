@@ -104,7 +104,7 @@ export default function Navbar({ children }: NavbarProps) {
     {
       icon: (className) => <MessagePlusSquare className={className} />,
       name: "Feedback",
-      path: `mailto:vidchill@vidchill.com`,
+      path: `mailto:vidapp@vidapp.com`,
       lineAbove: false,
     },
     {
@@ -147,7 +147,7 @@ export default function Navbar({ children }: NavbarProps) {
 
   return (
     <>
-      <div className="bg-background fixed z-50 w-full border  border-gray-200 shadow-sm lg:overflow-y-visible">
+      <div className="fixed z-50 w-full border border-gray-200  bg-background shadow-sm lg:overflow-y-visible">
         <div className="mx-auto flex max-w-full px-2 sm:px-6 lg:px-16 xl:grid xl:grid-cols-12">
           <div className="flex flex-shrink-0 items-center lg:static xl:col-span-2">
             <Link href="/#" aria-label="Home">
@@ -174,7 +174,7 @@ export default function Navbar({ children }: NavbarProps) {
                   <input
                     id="search"
                     name="search"
-                    className="bg-background block w-full rounded-md border-0 py-1.5 pl-10 pr-3 text-gray-900 outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6 "
+                    className="block w-full rounded-md border-0 bg-background py-1.5 pl-10 pr-3 text-gray-900 outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6 "
                     placeholder="Search"
                     type="search"
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -210,7 +210,7 @@ export default function Navbar({ children }: NavbarProps) {
                 leaveFrom="transform scale-100 opacity-100"
                 leaveTo="transform scale-95 opacity-0"
               >
-                <Menu.Items className="bg-background absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md  py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-background  py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                   {sessionData ? (
                     <div className="mx-4 my-2 flex">
                       <UserImage image={sessionData?.user.image ?? ""} />
