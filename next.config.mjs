@@ -8,7 +8,11 @@ await import("./src/env.js");
 const config = {
   reactStrictMode: true,
   images: {
-    domains: ["res.cloudinary.com"],
+    domains: [
+      "res.cloudinary.com",
+      "yt3.ggpht.com",
+      "yt3.googleusercontent.com",
+    ],
   },
 
   /**
