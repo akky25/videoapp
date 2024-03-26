@@ -10,8 +10,11 @@ import { api } from "~/utils/api";
 import { env } from "~/env.js";
 import { ImageCropper } from "~/Components/Button/EditButton";
 import { Camera } from "~/Components/Icons/Icons";
+import { useLoading } from "~/Components/LoadingProvider";
+import { useRouter } from "next/router";
 
 const Settings: NextPage = () => {
+  const router = useRouter();
   const { data: sessionData } = useSession();
   const userId = sessionData?.user.id;
   const addUserUpdateMutation = api.user.updateUser.useMutation();
@@ -89,6 +92,7 @@ const Settings: NextPage = () => {
           void refetch();
         },
       });
+      void router.push(`/${userId}/ProfileVideos`);
     }
   };
 
@@ -137,7 +141,7 @@ const Settings: NextPage = () => {
               </div>
             </div>
           </div>
-          <div className="space-y-10 divide-y divide-gray-900/10">
+          <div className="divide-gray-900/10 space-y-10 divide-y">
             <div className="grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3">
               <div className="px-4 sm:px-0">
                 <h2 className="text-base font-semibold leading-7 text-gray-900">
@@ -148,7 +152,7 @@ const Settings: NextPage = () => {
                 </p>
               </div>
 
-              <form className="bg-background shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
+              <form className="ring-gray-900/5 bg-background shadow-sm ring-1 sm:rounded-xl md:col-span-2">
                 <div className="px-4 py-6 sm:p-8">
                   <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                     <div className="sm:col-span-3">
@@ -166,7 +170,7 @@ const Settings: NextPage = () => {
                           autoComplete="family-name"
                           value={user.name || ""}
                           onChange={handleInputChange}
-                          className="bg-background block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-md border-0 bg-background px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                         />
                       </div>
                     </div>
@@ -186,7 +190,7 @@ const Settings: NextPage = () => {
                           autoComplete="email"
                           value={user.email || ""}
                           onChange={handleInputChange}
-                          className="bg-background block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-md border-0 bg-background px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                         />
                       </div>
                     </div>
@@ -205,7 +209,7 @@ const Settings: NextPage = () => {
                 </p>
               </div>
 
-              <form className="bg-background shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
+              <form className="ring-gray-900/5 bg-background shadow-sm ring-1 sm:rounded-xl md:col-span-2">
                 <div className="px-4 py-6 sm:p-8">
                   <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                     <div className="sm:col-span-4">
@@ -244,7 +248,7 @@ const Settings: NextPage = () => {
                           id="description"
                           name="description"
                           rows={3}
-                          className="bg-background block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-md border-0 bg-background py-1.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                           value={user.description || ""}
                           onChange={handleInputChange}
                         />
@@ -255,7 +259,7 @@ const Settings: NextPage = () => {
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+                <div className="border-gray-900/10 flex items-center justify-end gap-x-6 border-t px-4 py-4 sm:px-8">
                   <Button
                     type="reset"
                     variant="primary"
@@ -294,6 +298,8 @@ export function CropImageModal({
   const [croppedImage, setCroppedImage] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
   const addUserUpdateMutation = api.user.updateUser.useMutation();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { setIsLoading } = useLoading();
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -302,6 +308,8 @@ export function CropImageModal({
     }
   };
   const handleSubmit = (croppedDataUrl: string) => {
+    setIsLoading(true);
+    setOpen(false);
     type UploadResponse = {
       secure_url: string;
     };
@@ -333,7 +341,6 @@ export function CropImageModal({
           };
           addUserUpdateMutation.mutate(newUserData, {
             onSuccess: () => {
-              setOpen(false);
               void refetch();
             },
           });
@@ -341,6 +348,9 @@ export function CropImageModal({
       })
       .catch((error) => {
         console.error("An error occurred:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 

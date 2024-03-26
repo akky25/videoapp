@@ -41,12 +41,7 @@ export function ErrorMessage({
 export function LoadingMessage() {
   return (
     <div className="relative mt-16 flex w-full  flex-col items-center justify-center gap-2 text-center">
-      <ReactLoading
-        type={"spinningBubbles"}
-        color={"#b3d81e"}
-        height={667}
-        width={375}
-      />
+      <ReactLoading type={"spin"} color={"#b3d81e"} height={100} width={100} />
       <h1 className="text-2xl font-semibold text-gray-900">Loading</h1>
     </div>
   );

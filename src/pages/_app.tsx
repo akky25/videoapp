@@ -8,6 +8,7 @@ import "~/styles/globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "~/Components/ThemeProvider";
 import Head from "next/head";
+import { LoadingProvider } from "~/Components/LoadingProvider";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -20,7 +21,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
       </Head>
       <SessionProvider session={session}>
         <ThemeProvider>
-          <Component {...pageProps} />
+          <LoadingProvider>
+            <Component {...pageProps} />
+          </LoadingProvider>
         </ThemeProvider>
       </SessionProvider>
       <Analytics />
