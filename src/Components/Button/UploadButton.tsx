@@ -5,6 +5,7 @@ import { Fragment, useRef, useState } from "react";
 import { useSession } from "next-auth/react";
 import { api } from "~/utils/api";
 import { env } from "~/env";
+import { useLoading } from "../LoadingProvider";
 
 export default function UploadButton({
   refetch,
@@ -16,6 +17,7 @@ export default function UploadButton({
   const [uploadedVideo, setUploadedVideo] = useState<File | null>(null);
   const { data: sessionData } = useSession();
   const addVideoUpdateMutation = api.video.createVideo.useMutation();
+  const { setIsLoading } = useLoading();
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -25,6 +27,7 @@ export default function UploadButton({
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const handleSubmit = () => {
+    setIsLoading(true);
     type UploadResponse = {
       secure_url: string;
     };
@@ -75,6 +78,9 @@ export default function UploadButton({
       })
       .catch((error) => {
         console.error("An error occurred:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -131,7 +137,7 @@ export default function UploadButton({
                           Upload Video{" "}
                         </Dialog.Title>
                         <div className="col-span-full">
-                          <div className="mt-2 flex justify-center rounded-lg border-4 border-dashed border-gray-800/25 px-6 py-10">
+                          <div className="border-gray-800/25 mt-2 flex justify-center rounded-lg border-4 border-dashed px-6 py-10">
                             <div className="text-center">
                               {uploadedVideo ? (
                                 <p className="text-gray-700">

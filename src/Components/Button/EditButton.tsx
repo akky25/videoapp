@@ -7,6 +7,7 @@ import "cropperjs/dist/cropper.css";
 import { useSession } from "next-auth/react";
 import { env } from "~/env";
 import { api } from "~/utils/api";
+import { useLoading } from "../LoadingProvider";
 
 interface EditButtonProps {
   video: {
@@ -38,6 +39,8 @@ export default function EditButton({ video, refetch }: EditButtonProps) {
 
   const addVideoUpdateMutation = api.video.updateVideo.useMutation();
 
+  const { setIsLoading } = useLoading();
+
   const handleClick = () => {
     setCurrentPage(1);
     setOpen(true);
@@ -60,6 +63,7 @@ export default function EditButton({ video, refetch }: EditButtonProps) {
   };
 
   const handleSubmit = () => {
+    setIsLoading(true);
     type UploadResponse = {
       secure_url: string;
     };
@@ -117,6 +121,9 @@ export default function EditButton({ video, refetch }: EditButtonProps) {
         })
         .catch((error) => {
           console.error("An error occurred:", error);
+        })
+        .finally(() => {
+          setIsLoading(false);
         });
     }
   };
@@ -178,7 +185,7 @@ export default function EditButton({ video, refetch }: EditButtonProps) {
                               Cover photo
                             </label>
 
-                            <div className="mt-2 flex justify-center rounded-lg border-4 border-dashed border-gray-200/25 px-6 py-10">
+                            <div className="border-gray-200/25 mt-2 flex justify-center rounded-lg border-4 border-dashed px-6 py-10">
                               <div className="text-center">
                                 {croppedImage ? (
                                   // eslint-disable-next-line @next/next/no-img-element

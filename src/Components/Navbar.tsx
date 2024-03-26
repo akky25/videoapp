@@ -147,7 +147,7 @@ export default function Navbar({ children }: NavbarProps) {
 
   return (
     <>
-      <div className="fixed z-50 w-full border border-gray-200  bg-background shadow-sm lg:overflow-y-visible">
+      <div className="fixed z-40 w-full border border-gray-200  bg-background shadow-sm lg:overflow-y-visible">
         <div className="mx-auto flex max-w-full px-2 sm:px-6 lg:px-16 xl:grid xl:grid-cols-12">
           <div className="flex flex-shrink-0 items-center lg:static xl:col-span-2">
             <Link href="/#" aria-label="Home">
