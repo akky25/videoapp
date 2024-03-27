@@ -251,7 +251,7 @@ export default function Sidebar({
           >
             <div className="fixed inset-0 bg-gray-200 opacity-80" />
           </Transition.Child>
-          <div className="fixed inset-0 flex">
+          <div className="fixed inset-0 mb-16 flex">
             <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
