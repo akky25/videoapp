@@ -37,7 +37,8 @@ export default function Description({
             className="flex flex-row place-content-evenly"
           >
             <p
-              className={`text-left text-sm font-semibold text-gray-600 ${
+              style={{ wordBreak: "break-all" }}
+              className={` break-all text-left text-sm font-semibold text-gray-600 ${
                 !isExpanded ? "line-clamp-2" : ""
               }`}
             >
