@@ -358,7 +358,11 @@ export function CropImageModal({
     <>
       {imageType === "image" ? (
         <>
-          <label htmlFor="file-upload-image" className="relative">
+          <label
+            htmlFor="file-upload-image"
+            className="relative"
+            aria-label="アイコン画像の変更"
+          >
             <input
               id="file-upload-image"
               name="image"
@@ -372,7 +376,7 @@ export function CropImageModal({
               height="2000"
               // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
               src={channel?.image || "/profile.jpg"}
-              alt="error"
+              alt="アイコン画像"
             />
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
               {/* <File className="h-10 w-10" /> */}
@@ -381,8 +385,21 @@ export function CropImageModal({
           </label>
         </>
       ) : (
-        <>
-          <label htmlFor="file-upload-backgroundImage" className="relative">
+        <div className="relative">
+          {/* <label htmlFor="file-upload-backgroundImage" className="relative"> */}
+          <Image
+            className="h-32 w-full object-cover lg:h-64"
+            // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+            src={channel.backgroundImage || "/background.jpg"}
+            width={2000}
+            height={2000}
+            alt="バナー画像"
+          />
+          {/* </label> */}
+          <label
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform"
+            aria-label="バナー画像の変更"
+          >
             <input
               id="file-upload-backgroundImage"
               name="backgroundImage"
@@ -390,19 +407,9 @@ export function CropImageModal({
               className="sr-only"
               onChange={onFileChange}
             />
-            <Image
-              className="h-32 w-full object-cover lg:h-64"
-              // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-              src={channel.backgroundImage || "/background.jpg"}
-              width={2000}
-              height={2000}
-              alt="error"
-            />
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
-              <Camera />
-            </div>
+            <Camera aria-hidden />
           </label>
-        </>
+        </div>
       )}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={setOpen}>
