@@ -24,13 +24,7 @@ const LikedVideos: NextPage = () => {
     if (isLoading) {
       return <LoadingMessage />;
     } else if (error ?? !data) {
-      return (
-        <ErrorMessage
-          icon="GreenPlay"
-          message="No like videos"
-          description="Go like some videos."
-        />
-      );
+      return <ErrorMessage icon="GreenPlay" message="No like videos" />;
     } else {
       return <></>;
     }

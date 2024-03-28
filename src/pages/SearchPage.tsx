@@ -21,7 +21,7 @@ const SearchPage: NextPage = () => {
         <ErrorMessage
           icon="GreenPlay"
           message="No Videos"
-          description="Sorry try another search result ."
+          description="動画が見つかりませんでした。"
         />
       );
     } else {

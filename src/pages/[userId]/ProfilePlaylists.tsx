@@ -27,14 +27,14 @@ const ProfilePlaylist: NextPage = () => {
       return (
         <ErrorMessage
           message="No Playlists Created"
-          description="You have not yet created a playlist inside your library."
+          description="プレイリストが作成されていません"
         />
       );
     } else if (errorTypes) {
       return (
         <ErrorMessage
           message="No libraries created"
-          description="Profile has not yet created a playlist."
+          description="プレイリストが作成されていません"
         />
       );
     } else {

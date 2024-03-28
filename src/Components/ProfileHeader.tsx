@@ -73,7 +73,7 @@ export default function ProfileHeader() {
         <ErrorMessage
           icon="GreenPeople"
           message="Error loading Channel"
-          description="Sorry there is a error loading channel at this time."
+          description="申し訳ありません、このコンテンツはただ今ロード中です。"
         />
       );
     } else {

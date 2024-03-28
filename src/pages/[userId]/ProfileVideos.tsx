@@ -29,7 +29,7 @@ const ProfileVideos: NextPage = () => {
         <>
           <ErrorMessage
             message="No Videos Uploaded"
-            description="Click to upload new video. You have yet to upload a video."
+            description="クリックしてビデオをアップロードしよう！"
           >
             <Button
               variant="primary"
@@ -47,7 +47,7 @@ const ProfileVideos: NextPage = () => {
       return (
         <ErrorMessage
           message="No videos avaliable"
-          description="Profile has no videos uploaded."
+          description="動画はありません"
         />
       );
     } else {
