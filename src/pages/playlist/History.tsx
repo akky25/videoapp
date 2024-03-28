@@ -24,13 +24,7 @@ const History: NextPage = () => {
     if (isLoading) {
       return <LoadingMessage />;
     } else if (error ?? !data) {
-      return (
-        <ErrorMessage
-          icon="GreenPlay"
-          message="No Current History"
-          description="Watching some videos inorder to add to history."
-        />
-      );
+      return <ErrorMessage icon="GreenPlay" message="No Current History" />;
     } else {
       return <></>;
     }

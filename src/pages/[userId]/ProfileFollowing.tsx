@@ -35,7 +35,7 @@ const ProfileFollowigs: NextPage = () => {
         <ErrorMessage
           icon="GreenHorn"
           message="No people followed"
-          description="You have yet to follow anyone else. Follow someone now!"
+          description="今すぐ誰かをフォローしましょう！"
         />
       );
     } else if (errorTypes) {
@@ -43,7 +43,7 @@ const ProfileFollowigs: NextPage = () => {
         <ErrorMessage
           icon="GreenPeople"
           message="No people followed"
-          description="This page has yet to follow a new person. "
+          description="フォローしていません。"
         />
       );
     } else {

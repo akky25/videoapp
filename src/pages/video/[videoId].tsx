@@ -83,7 +83,8 @@ const VideoPage: NextPage = () => {
         <ErrorMessage
           icon="GreenPlay"
           message="No Video"
-          description="Sorry there is an error with video ."
+          description="動画が見つかりませんでした。"
+          noCenter
         />
       );
     } else {

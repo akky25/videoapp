@@ -38,7 +38,7 @@ const Dashboard: NextPage = () => {
         <ErrorMessage
           icon="GreenPeople"
           message="Error loading channel"
-          description="Sorry there is at this time."
+          description="チャンネルを読み込めませんでした。"
         />
       );
     } else {

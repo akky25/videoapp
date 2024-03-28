@@ -16,7 +16,7 @@ const Home: NextPage = () => {
         <ErrorMessage
           icon="GreenPlay"
           message="No Videos"
-          description="Sorry there is no videos at this time."
+          description="動画が見つかりませんでした。"
         />
       );
     } else {
